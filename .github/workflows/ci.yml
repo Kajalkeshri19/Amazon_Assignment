@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      product_id:
+        description: 'Test'
+        required: true
+        
+  push:
+    branches:
+      - main
+
+jobs:
+  test_product:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set Product ID
+        run: echo "PRODUCT_ID=${{ inputs.product_id }}" >> $GITHUB_ENV
+
+      - name: Run Test
+        run: |
+          export PRODUCT_ID=$PRODUCT_ID
+          cd Amazon
+          mvn test
