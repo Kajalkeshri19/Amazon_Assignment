@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 
@@ -78,29 +79,46 @@ public class Amazon {
 
     public boolean validateBuyNowButton()
     {
-        wait.until(ExpectedConditions.visibilityOf(buyButton));
+        try{
+            wait.until(ExpectedConditions.visibilityOf(buyButton));
+            System.out.println("BuyNow Button is Present");
+        }
+        catch (NoSuchElementException e){
+            System.out.println(e);
+        }
         return buyButton.isDisplayed();
     }
 
     public void validateRating()
     {
-        wait.until(ExpectedConditions.visibilityOf(rating));
-        System.out.println("Rating for this product is: " +rating.getText());
-        double displayedRating= Double.parseDouble(rating.getText().replaceAll("\\(|\\)", ""));
-        System.out.println(displayedRating);
-        if(displayedRating>=4.0)
-        {
-            System.out.println("Customer Rating for this product is over Four i.e " +displayedRating);
+        try {
+            wait.until(ExpectedConditions.visibilityOf(rating));
+            System.out.println("Rating for this product is: " + rating.getText());
+            double displayedRating = Double.parseDouble(rating.getText().replaceAll("\\(|\\)", ""));
+            System.out.println(displayedRating);
+            if (displayedRating >= 4.0) {
+                System.out.println("Customer Rating for this product is over Four i.e " + displayedRating);
+            } else {
+                System.out.println("Customer rating for this product is under Four i.e " + displayedRating);
+            }
         }
-        else{
-            System.out.println("Customer rating for this product is under Four i.e " +displayedRating);
+        catch (NoSuchElementException e)
+        {
+            System.out.println(e);
+
         }
     }
 
     public boolean goToOffers()
     {
-        wait.until(ExpectedConditions.visibilityOf(offers));
-        System.out.println(offers.getText());
+        try{
+            wait.until(ExpectedConditions.visibilityOf(offers));
+            System.out.println(offers.getText());
+        }
+        catch (NoSuchElementException e)
+        {
+            System.out.println(e);
+        }
         return offers.isDisplayed();
     }
 
