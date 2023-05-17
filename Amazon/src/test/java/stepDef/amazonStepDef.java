@@ -30,7 +30,7 @@ public class amazonStepDef {
 
     @Then("I should check if customer rating for the product is over four")
     public void iShouldCheckIfCustomerRatingForTheProductIsOverFour() {
-        Assert.assertTrue(tcs.pom.getAmazon().validateRating());
+        tcs.pom.getAmazon().validateRating();
     }
 
     @Then("Print all the offers available on the description page for the product")

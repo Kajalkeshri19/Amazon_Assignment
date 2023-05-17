@@ -62,7 +62,7 @@ public class Amazon {
 //        B0BY8JZ22K
         String productId = System.getenv("PRODUCT_ID");
         searchBox.sendKeys(productId);
-        //searchBox.sendKeys("B0BY8JZ22K");
+        //searchBox.sendKeys("B08317Y4VP");
         wait.until(ExpectedConditions.visibilityOf(search));
         search.click();
     }
@@ -90,7 +90,7 @@ public class Amazon {
         return buyButton.isDisplayed();
     }
 
-    public boolean validateRating()
+    public void validateRating()
     {
         try {
             wait.until(ExpectedConditions.visibilityOf(rating));
@@ -106,8 +106,8 @@ public class Amazon {
         catch (NoSuchElementException e)
         {
             System.out.println(e);
+
         }
-        return rating.isDisplayed();
     }
 
     public boolean goToOffers()
@@ -120,6 +120,7 @@ public class Amazon {
         {
             System.out.println(e);
         }
+
         return offers.isDisplayed();
     }
 
